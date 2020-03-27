@@ -48,6 +48,22 @@ namespace Disney_.NET
             return _client.Execute(request);
         }
 
+        public IRestResponse GetAuthorized(string endpoint)
+        {
+            var request = new RestRequest(endpoint, Method.GET);
+            request.AddHeader("Authorization", $"{_tokenType} {_accessToken}");
+
+            return _client.Execute(request);
+        }
+
+        public IRestResponse PutAuthorized(string endpoint)
+        {
+            var request = new RestRequest(endpoint, Method.PUT);
+            request.AddHeader("Authorization", $"{_tokenType} {_accessToken}");
+
+            return _client.Execute(request);
+        }
+
         /// <summary>
         /// This endpoint creates a JWT token if the standard authentication is correct
         /// </summary>
